@@ -15,6 +15,7 @@ On Arch Linux, you'll need about these packages (all of which are official):
   * `flex`
   * `libxslt`
   * `libxml2`
+  * `cmake`
 
 Everything works with latest versions.
 
