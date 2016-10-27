@@ -34,8 +34,16 @@ Feel free to ingore the warning of `YY_NULLPTR` being redefined.
 
 I assume you unpacked the zipped framework to `assignment`.
 
+    git clone git@github.com:dcepelik/nswi098-cmake.git
+    cp nswi098-cmake/CMakeLists.txt assignment
+
     cd assignment
-    git clone git@github.com:dcepelik/nswi098-cmake.git .
     mkdir build
     cd build
     cmake .. && make
+
+The `mlc` executable will be found at `build`, all the generated files reside
+in `build/generated`.
+
+**With future assignments, you'll probably need to `git fetch` the repository
+to get up-to-date version of the CMakeLists.txt file.**
