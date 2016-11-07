@@ -21,6 +21,8 @@ SET(public_rw "${base_path}/public-rw")
 SET(xml "${public_ro}/common/xml")
 SET(build "${base_path}/build")
 SET(generated "${build}/generated")
+SET(tests "${public_ro}/mlc/du1/tests/")
+
 
 INCLUDE_DIRECTORIES(
 	public-ro/common/h
@@ -87,3 +89,31 @@ ADD_CUSTOM_COMMAND(
 	OUTPUT ${generated}/gen_icinstrtab.cpp
 	COMMAND xsltproc --output ${generated}/gen_icinstrtab.cpp ${xml}/genictabc.xslt ${xml}/icminstr.xml
 	DEPENDS ${xml}/genictabc.xslt ${xml}/icminstr.xml)
+
+ENABLE_TESTING()
+
+
+
+ADD_CUSTOM_COMMAND(
+    TARGET mlc
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Generating output for du1-test1"
+    COMMAND mlc ${tests}/du1-test1.mls > ${generated}/du1-test1.out
+)
+
+ADD_CUSTOM_COMMAND(
+    TARGET mlc
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Generating output for du1-test2"
+    COMMAND mlc ${tests}/du1-test2.mls > ${generated}/du1-test2.out
+)
+
+ADD_TEST(
+	NAME test1 
+	COMMAND diff --ignore-all-space ${generated}/du1-test1.out ${tests}/du1-test1.out
+)
+
+ADD_TEST(
+	NAME test2
+	COMMAND diff --ignore-all-space ${generated}/du1-test2.out ${tests}/du1-test2.out
+)
