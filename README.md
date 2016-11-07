@@ -43,6 +43,12 @@ I assume you unpacked the zipped framework to `assignment`.
     cd build
     cmake .. && make
 
+Within `build`, you may run `ctest` to run tests. `ctest` won't tell you where
+the files differ, only whether or not they differ. You may use a visual tool
+such as `vimdiff` to see the differences while tuning your code.
+
+**The tests ignore all whitespace, including EOL convention!**
+
 The `mlc` executable will be found at `build`, all the generated files reside
 in `build/generated`.
 
